@@ -1,5 +1,5 @@
 from bs4 import BeautifulSoup
-import requests
+import requests, webbrowser
 from colorama import Fore
 
 url = "https://www.nytimes.com/section/technology"
@@ -16,7 +16,10 @@ stories = stories_container.find_all('li', class_='css-112uytv')
 
 for story in stories:
     story_name = story.h2.text
-    print(Fore.GREEN, story_name)
+    story_link = story.a.attrs['href']
+    links_list.append(story_link)
+    print(Fore.GREEN, story_name + ' -' + Fore.RED, story_link)
 
-#print(Fore.RED, story)
+#def openLinks(link):
+#    webbrowser.open(link)
 
