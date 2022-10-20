@@ -18,8 +18,12 @@ for story in stories:
     story_name = story.h2.text
     story_link = story.a.attrs['href']
     links_list.append(story_link)
-    print(Fore.GREEN, story_name + ' -' + Fore.RED, story_link)
+    #print(Fore.GREEN, story_name + ' -' + Fore.RED, story_link)
 
-#def openLinks(link):
-#    webbrowser.open(link)
+def openLinks(links):
+    chrome_path = r'C:\Program Files\Google\Chrome\Application\chrome.exe'
+    webbrowser.register('chrome', None, webbrowser.BackgroundBrowser(chrome_path))
+    for link in links:
+        webbrowser.get('chrome').open_new_tab('https://www.nytimes.com'+link)
 
+openLinks(links_list)
